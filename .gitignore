@@ -1,0 +1,17 @@
+bin/
+obj/
+dist/
+packaging/icon.png
+refs/
+libs/*.dll
+libs/*.version
+decompiled/
+decompiled-jotunn/
+.cache/
+docker/server-build/
+.local/
+.nuget/
+*.log
+*.user
+Thumbs.db
+.DS_Store

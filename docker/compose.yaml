@@ -1,0 +1,16 @@
+services:
+  valheim:
+    image: valheim-beeswax
+    container_name: valheim-beeswax
+    restart: unless-stopped
+    ports:
+      - "2456-2457:2456-2457/udp"
+    volumes:
+      - valheim-config:/config
+    environment:
+      SERVER_NAME: "Beeswax Coating"
+      SERVER_WORLD: "Beeswax"
+      SERVER_PORT: "2456"
+
+volumes:
+  valheim-config:
