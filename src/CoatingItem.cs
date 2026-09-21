@@ -4,7 +4,8 @@ namespace BeeswaxCoating
     {
         public const string PrefabName = "BeeswaxCoating";
 
-        // Vanilla has no beeswax item - this mod provides one, dropped by harvested hives.
+        // Legacy item kept registered so existing worlds/inventories stay valid.
+        // Nothing produces or consumes it - the coating crafts from honey and resin.
         public const string WaxPrefabName = "Beeswax";
     }
 }

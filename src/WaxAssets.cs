@@ -25,7 +25,7 @@ namespace BeeswaxCoating
                 filter.sharedMesh = mesh;
             }
             MeshRenderer renderer = prefab.GetComponent<MeshRenderer>();
-            if (renderer != null)
+            if (renderer != null && material != null)
             {
                 renderer.sharedMaterial = material;
             }
@@ -230,7 +230,8 @@ namespace BeeswaxCoating
         /// Picks a shader at runtime. The candidates are tried in order; the first
         /// present one wins and the choice is logged. The sprite shaders are Unity
         /// built-ins always included in the build, so a visible material is
-        /// guaranteed even when the stylized game shaders cannot be found by name.
+        /// virtually guaranteed; if somehow none resolve, null is returned and the
+        /// renderer is left without a material rather than risking a bad constructor.
         /// </summary>
         public static Material CreateWaxMaterial(Texture2D texture)
         {
@@ -241,29 +242,22 @@ namespace BeeswaxCoating
                 "Sprites/Default",
                 "Unlit/Texture"
             };
-            Shader shader = null;
-            string used = null;
             foreach (var name in candidates)
             {
-                shader = Shader.Find(name);
+                Shader shader = Shader.Find(name);
                 if (shader != null)
                 {
-                    used = name;
-                    break;
+                    BeeswaxCoatingPlugin.Logger.LogInfo($"Wax material shader: {name}");
+                    var material = new Material(shader) { mainTexture = texture };
+                    if (material.HasProperty("_Color"))
+                    {
+                        material.SetColor("_Color", Color.white);
+                    }
+                    return material;
                 }
             }
-            if (shader == null)
-            {
-                BeeswaxCoatingPlugin.Logger.LogWarning("No shader found for wax material; item will render pink/magenta");
-                return new Material(Shader.Find("Standard")) { mainTexture = texture };
-            }
-            BeeswaxCoatingPlugin.Logger.LogInfo($"Wax material shader: {used}");
-            var material = new Material(shader) { mainTexture = texture };
-            if (material.HasProperty("_Color"))
-            {
-                material.SetColor("_Color", Color.white);
-            }
-            return material;
+            BeeswaxCoatingPlugin.Logger.LogWarning("No shader found for wax material; item will render without one");
+            return null;
         }
     }
 }

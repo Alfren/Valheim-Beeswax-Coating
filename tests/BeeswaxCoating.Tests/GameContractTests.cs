@@ -108,13 +108,6 @@ namespace BeeswaxCoating.Tests
         }
 
         [Fact]
-        public void WearNTear_HasPublicNoRoofWearField()
-        {
-            var f = GameType("WearNTear").GetField("m_noRoofWear");
-            Assert.True(f != null && f.IsPublic, "WearNTear.m_noRoofWear must stay a public field");
-        }
-
-        [Fact]
         public void HoverText_ExposeGetHoverText()
         {
             AssertMethod(GameType("HoverText"), "GetHoverText", 0);
@@ -133,13 +126,6 @@ namespace BeeswaxCoating.Tests
             AssertMethod(p, "Message", 2, 5);
         }
 
-        [Fact]
-        public void Inventory_CountAndRemoveByName()
-        {
-            var inv = GameType("Inventory");
-            AssertMethod(inv, "CountItems", 1, 3);
-            AssertMethod(inv, "RemoveItem", 2, 4);
-        }
 
         [Fact]
         public void ZDO_BoolGetSet()
@@ -192,28 +178,6 @@ namespace BeeswaxCoating.Tests
             Assert.True(t != null, "assembly_guiutils.dll no longer defines Localization");
             Assert.True(t.GetMember("instance").Any(), "Localization.instance missing");
             AssertMethod(t, "Localize", 1);
-        }
-
-        [Fact]
-        public void Beehive_YieldsBeeswax_PatchTargetsExist()
-        {
-            var hive = GameType("Beehive");
-            var flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
-            Assert.Single(hive.GetMethods(flags), m => m.Name == "RPC_Extract" && m.GetParameters().Length == 1);
-            Assert.Single(hive.GetMethods(flags), m => m.Name == "IncreseLevel" && m.GetParameters().Length == 1);
-            AssertMethod(hive, "GetHoverText", 0);
-            var maxHoney = hive.GetField("m_maxHoney");
-            Assert.True(maxHoney != null && maxHoney.IsPublic, "Beehive.m_maxHoney must stay a public field");
-            Assert.True(hive.GetField("m_spawnPoint") != null, "Beehive.m_spawnPoint field missing");
-        }
-
-        [Fact]
-        public void ZNet_And_ObjectDB_Lookups_Exist()
-        {
-            Assert.True(GameType("ZNet").GetMethods(BindingFlags.Public | BindingFlags.Static)
-                .Any(m => m.Name == "GetUID" && m.GetParameters().Length == 0),
-                "ZNet.GetUID() static missing - hive drop guard would break");
-            AssertMethod(GameType("ObjectDB"), "GetItemPrefab", 1);
         }
 
         [Fact]

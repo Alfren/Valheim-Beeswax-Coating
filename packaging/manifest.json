@@ -1,8 +1,8 @@
 {
   "name": "BeeswaxCoating",
-  "version_number": "1.5.2",
+  "version_number": "1.6.2",
   "website_url": "https://github.com/Alfren/Valheim-Beeswax-Coating",
-  "description": "Protect exposed wood from rain and weathering! Beehives produce beeswax, craft coating brushes and paint your builds - coated wood never rots, gains a subtle golden sheen and persists in the world save. Works in multiplayer.",
+  "description": "Protect exposed wood from rain and weathering! Craft coating brushes from honey and resin and paint your builds - coated wood never rots, gains a subtle golden sheen and persists in the world save. Works in multiplayer.",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2350",
     "ValheimModding-Jotunn-@JOTUNN@"

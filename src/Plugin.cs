@@ -19,12 +19,11 @@ namespace BeeswaxCoating
     {
         public const string PluginGuid = "benjamin.beeswaxcoating";
         public const string PluginName = "BeeswaxCoating";
-        public const string PluginVersion = "1.5.2";
+        public const string PluginVersion = "1.6.2";
 
         internal new static ManualLogSource Logger;
         internal static ConfigEntry<bool> ShowHoverBadge;
         internal static ConfigEntry<int> BrushUses;
-        internal static ConfigEntry<bool> HiveBeeswax;
         internal static ConfigEntry<bool> CoatedSheen;
         internal static ConfigEntry<float> SheenIntensity;
 
@@ -42,10 +41,6 @@ namespace BeeswaxCoating
                 "General", "BrushUses", 20,
                 new ConfigDescription("Charges per crafted Beeswax Coating brush (shown as the durability bar). Applies to newly crafted brushes.",
                     new AcceptableValueRange<int>(1, 100)));
-
-            HiveBeeswax = Config.Bind(
-                "General", "HiveBeeswax", true,
-                "Beehives accumulate beeswax alongside honey (same production rate and cap) and drop it on harvest.");
 
             CoatedSheen = Config.Bind(
                 "Visuals", "CoatedSheen", true,
@@ -75,17 +70,19 @@ namespace BeeswaxCoating
             }
             try
             {
-                // Raw beeswax: dropped by harvested beehives.
+                // Raw beeswax: legacy item, kept registered so items in existing
+                // worlds/inventories stay valid. Nothing produces or consumes it -
+                // the coating is crafted directly from honey and resin.
                 RegisterItem(
                     CoatingItem.WaxPrefabName,
                     "Beeswax",
-                    "A lump of amber beeswax, fresh from the hive.",
+                    "A lump of amber beeswax. A legacy item - no longer used for crafting.",
                     null,
                     new Color(0.83f, 0.58f, 0.16f),
                     new Color(0.55f, 0.36f, 0.08f));
 
-                // The coating: a single-use hotbar tool, applied by left-clicking
-                // while holding it. Crafted at the workbench from wax and resin.
+                // The coating: a multi-use hotbar item, applied by left-clicking
+                // while holding it. Crafted at the workbench from honey and resin.
                 RegisterItem(
                     CoatingItem.PrefabName,
                     "Beeswax Coating",
@@ -97,8 +94,8 @@ namespace BeeswaxCoating
                         Amount = 1,
                         Requirements = new[]
                         {
-                            new RequirementConfig(CoatingItem.WaxPrefabName, 2),
-                            new RequirementConfig("Resin", 1)
+                            new RequirementConfig("Honey", 1),
+                            new RequirementConfig("Resin", 2)
                         }
                     },
                     new Color(0.94f, 0.87f, 0.64f),
@@ -150,8 +147,12 @@ namespace BeeswaxCoating
             }
             shared.m_icons = new[] { WaxAssets.CreateWaxIcon(waxColor, cellColor) };
 
-            bool dedicated = ZNet.instance != null && ZNet.instance.IsDedicated();
-            if (!dedicated)
+            // Headless check: ZNet.instance is not yet assigned when item
+            // registration runs (ObjectDB.CopyOtherDB during scene load), so
+            // the reliable signal for a dedicated server is the missing
+            // graphics device - no point building meshes/materials there.
+            bool headless = SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null;
+            if (!headless)
             {
                 int seed = prefabName == CoatingItem.PrefabName ? 42 : 7;
                 WaxAssets.AttachVisuals(go, waxColor, cellColor, seed);

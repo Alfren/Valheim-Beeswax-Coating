@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.6.2
+- Hardening pass: shader fallback can no longer throw on exotic builds (returns a material-less renderer instead), dedicated servers are now detected via the headless graphics device (the old ZNet-based check fired before ZNet existed, so servers built unused visual assets), and two stale contract tests plus outdated README claims were removed
+
+## 1.6.1
+- Review cleanup: removed a stale contract test and outdated hive-era strings in code comments, the legacy item description and the README
+
+## 1.6.0
+- Simplified acquisition: the Beeswax Coating is now crafted directly from 1x Honey + 2x Resin per brush (honey comes from vanilla beehives)
+- Removed hive beeswax production; the Beeswax item remains registered as a legacy item so existing worlds and inventories stay valid, but nothing produces or consumes it
+
 ## 1.5.2
 - Doubled the default brush durability to 20 charges per craft (config range widened to 1-100)
 
