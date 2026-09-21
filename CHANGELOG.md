@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.2
+- Also zeroed the remaining inherited combat defaults: Parry Adrenaline (the visible leftover), block adrenaline and block charges (farmable by blocking with the brush) and hidden armor
+
 ## 2.0.1
 - The brush tooltip no longer shows weapon stats (Block/Parry/Backstab/Knockback/Sword skill) - the weapon item type required for held-item detection inherited non-zero combat defaults from a fresh SharedData; they are now zeroed so the lines are hidden
 

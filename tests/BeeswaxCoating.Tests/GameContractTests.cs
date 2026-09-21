@@ -218,7 +218,9 @@ namespace BeeswaxCoating.Tests
             Assert.True(shared?.GetField("m_useDurability") != null, "SharedData.m_useDurability missing");
             Assert.True(shared?.GetField("m_equipDuration") != null, "SharedData.m_equipDuration missing");
             // Tooltip-hiding zeroes on the brush depend on these SharedData fields
-            foreach (var f in new[] { "m_blockPower", "m_timedBlockBonus", "m_attackForce", "m_backstabBonus", "m_skillType" })
+            foreach (var f in new[] { "m_blockPower", "m_timedBlockBonus", "m_attackForce", "m_backstabBonus",
+                                      "m_perfectBlockAdrenaline", "m_blockAdrenaline", "m_maxBlockCharges",
+                                      "m_armor", "m_skillType" })
             {
                 Assert.True(shared?.GetField(f) != null, $"SharedData.{f} missing");
             }

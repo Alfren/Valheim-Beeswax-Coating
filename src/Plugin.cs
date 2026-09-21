@@ -19,7 +19,7 @@ namespace BeeswaxCoating
     {
         public const string PluginGuid = "benjamin.beeswaxcoating";
         public const string PluginName = "HoneySeal";
-        public const string PluginVersion = "2.0.1";
+        public const string PluginVersion = "2.0.2";
 
         internal new static ManualLogSource Logger;
         internal static ConfigEntry<bool> ShowHoverBadge;
@@ -144,13 +144,19 @@ namespace BeeswaxCoating
                 shared.m_equipDuration = 0f;
                 // The weapon item type is required for held-item detection, but a
                 // fresh SharedData carries combat defaults (block 10, parry 1.5x,
-                // backstab 4x, knockback 30, Swords skill) that the tooltip would
-                // display on a paint brush - zero them so those lines are hidden.
+                // parry adrenaline 5, backstab 4x, knockback 30, armor 10, Swords
+                // skill) that the tooltip would display - and adrenaline/block
+                // charges could even be farmed by blocking with the brush. Zero
+                // them all so the paintbrush has no hidden combat data.
                 shared.m_skillType = Skills.SkillType.None;
                 shared.m_blockPower = 0f;
                 shared.m_timedBlockBonus = 0f;
                 shared.m_attackForce = 0f;
                 shared.m_backstabBonus = 0f;
+                shared.m_perfectBlockAdrenaline = 0f;
+                shared.m_blockAdrenaline = 0f;
+                shared.m_maxBlockCharges = 0;
+                shared.m_armor = 0f;
             }
             else
             {
