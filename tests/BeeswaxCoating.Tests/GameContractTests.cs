@@ -260,7 +260,7 @@ namespace BeeswaxCoating.Tests
                 .FirstOrDefault(a => a.AttributeType.Name.EndsWith("BepInPlugin"));
             Assert.True(attr != null, "BepInPlugin attribute missing");
             Assert.Equal("benjamin.beeswaxcoating", (string)attr!.ConstructorArguments[0].Value!);
-            Assert.Equal("BeeswaxCoating", (string)attr.ConstructorArguments[1].Value!);
+            Assert.Equal("HoneySeal", (string)attr.ConstructorArguments[1].Value!);
 
             Assert.Contains(plugin.GetCustomAttributesData(),
                 a => a.AttributeType.FullName == "Jotunn.Utils.NetworkCompatibilityAttribute");

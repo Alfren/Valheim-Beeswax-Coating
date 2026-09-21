@@ -15,7 +15,9 @@ fi
 
 # Icon: prefer the project logos at the repo root, else the committed icon,
 # else generate a procedural one.
-if [ -f BeeswaxLogoSmall.png ]; then
+if [ -f BeeswaxLogoSmallv2.png ]; then
+  python3 scripts/make-icon-from-logo.py BeeswaxLogoSmallv2.png packaging/icon.png
+elif [ -f BeeswaxLogoSmall.png ]; then
   python3 scripts/make-icon-from-logo.py BeeswaxLogoSmall.png packaging/icon.png
 elif [ -f BeeswaxLogo.png ]; then
   python3 scripts/make-icon-from-logo.py BeeswaxLogo.png packaging/icon.png
@@ -37,8 +39,8 @@ sed "s/@JOTUNN@/$JOTUNN_VER/" packaging/manifest.json > "$OUT/stage/manifest.jso
 # Thunderstore requires manifest.json at the zip root
 (
   cd "$OUT/stage"
-  zip -qr "../BeeswaxCoating-$VERSION.zip" .
+  zip -qr "../HoneySeal-$VERSION.zip" .
 )
 rm -rf "$OUT/stage"
 
-echo "Packaged dist/BeeswaxCoating-$VERSION.zip"
+echo "Packaged dist/HoneySeal-$VERSION.zip"

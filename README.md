@@ -1,12 +1,12 @@
-# BeeswaxCoating
+# HoneySeal
 
-A Valheim mod that lets you protect exposed wooden structures from rain and weathering with **Beeswax Coating**.
+A Valheim mod that lets you protect exposed wooden structures from rain and weathering with **Honey Seal** — a wax brush crafted from honey and resin.
 
 Exposed wood normally soaks up rain and slowly rots — rain wears wood down to 50% health (5% max-HP damage per 60s of wetness) and holds it there. With this mod you can craft a coating and brush it onto wood pieces — coated pieces are **permanently immune to rain and no-roof weathering**. Structural support failure, fire, ash, lava damage and full water submersion still apply. The coating is stored per piece in the world save, so it persists across sessions and works in multiplayer. Works on any weatherable wood piece, ships included.
 
 ## Crafting
 
-**Beeswax Coating** — crafted at the Workbench (level 1):
+**Honey Seal** — crafted at the Workbench (level 1):
 
 | Ingredient | Amount |
 |---|---|
@@ -17,7 +17,7 @@ Each craft yields 1 brush with 20 charges (configurable via `BrushUses`). Honey 
 
 ## Usage
 
-1. Craft a Beeswax Coating brush at a workbench (1× Honey + 2× Resin → 1 brush with 20 charges).
+1. Craft a Honey Seal brush at a workbench (1× Honey + 2× Resin → 1 brush with 20 charges).
 2. Put it in your hotbar and equip it — it's held like a one-handed item, and the durability bar shows remaining charges.
 3. Aim at a wood building piece and **left-click** to brush on the coating. Works with gamepad (attack trigger). Any wood-family material can be coated - walls, poles, beams, angled/roof wood included; stone and other materials are refused.
 4. **Hold left-click and sweep** to wax several pieces in one pass; messages are throttled while sweeping.
@@ -29,7 +29,7 @@ Each craft yields 1 brush with 20 charges (configurable via `BrushUses`). Honey 
 
 | Option | Default | Description |
 |---|---|---|
-| `ShowHoverBadge` | `true` | Append a "Beeswax coated" line to hover text |
+| `ShowHoverBadge` | `true` | Append a "Honey sealed" line to hover text |
 | `BrushUses` | `20` | Charges per crafted brush (1-100; applies to new brushes) |
 | `CoatedSheen` | `true` | Subtle warm sheen on coated wood, visible without hovering |
 | `SheenIntensity` | `0.15` | Strength of the coated-wood sheen (0.05-0.5) |
@@ -37,7 +37,7 @@ Each craft yields 1 brush with 20 charges (configurable via `BrushUses`). Honey 
 ## Recognizing coated wood
 
 - **Sheen**: coated pieces carry a faint golden glow (the same material channel the game uses for structural highlighting), re-applied every second while a piece is loaded - visible from a distance, most noticeable at night or indoors.
-- **Hover**: aiming at a piece shows a dedicated amber "Beeswax coated" line.
+- **Hover**: aiming at a piece shows a dedicated amber "Honey sealed" line.
 
 ## Multiplayer
 

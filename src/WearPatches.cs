@@ -64,7 +64,7 @@ namespace BeeswaxCoating
             var wnt = __instance.GetComponentInParent<WearNTear>();
             if (wnt != null && WaxState.IsWaxed(wnt))
             {
-                __result += "\n<color=#F2B632>Beeswax coated</color>";
+                __result += "\n<color=#F2B632>Honey sealed</color>";
             }
         }
 

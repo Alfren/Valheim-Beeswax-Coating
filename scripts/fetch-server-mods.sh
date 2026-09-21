@@ -58,7 +58,7 @@ PYEOF
 done < "$MODS_FILE"
 
 # Our mod from the locally built package
-DIST_ZIP=$(ls dist/BeeswaxCoating-*.zip | head -1)
+DIST_ZIP=$(ls dist/HoneySeal-*.zip | head -1)
 python3 - "$DIST_ZIP" "$STAGE" <<'PYEOF'
 import sys, zipfile, os
 src, dest = sys.argv[1], sys.argv[2]

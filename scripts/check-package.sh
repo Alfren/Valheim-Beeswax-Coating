@@ -5,7 +5,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 VERSION="$(grep -oPm1 '(?<=<Version>)[^<]+' src/BeeswaxCoating.csproj)"
-ZIP="dist/BeeswaxCoating-$VERSION.zip"
+ZIP="dist/HoneySeal-$VERSION.zip"
 
 if [ ! -f "$ZIP" ]; then
   echo "FAIL: $ZIP not found - run scripts/package.sh first" >&2

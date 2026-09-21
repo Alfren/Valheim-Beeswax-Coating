@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0
+- Renamed the mod to HoneySeal (display-level: plugin GUID, item prefab names and config file keep the historic beeswax identifiers, so existing worlds, inventories and servers stay compatible)
+- Item renamed to "Honey Seal", hover badge to "Honey sealed", matching messages
+- Icon updated via BeeswaxLogoSmallv2.png
+
+# Changelog
+
 ## 1.6.2
 - Hardening pass: shader fallback can no longer throw on exotic builds (returns a material-less renderer instead), dedicated servers are now detected via the headless graphics device (the old ZNet-based check fired before ZNet existed, so servers built unused visual assets), and two stale contract tests plus outdated README claims were removed
 

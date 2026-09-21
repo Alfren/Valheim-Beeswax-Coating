@@ -18,8 +18,8 @@ namespace BeeswaxCoating
     public class BeeswaxCoatingPlugin : BaseUnityPlugin
     {
         public const string PluginGuid = "benjamin.beeswaxcoating";
-        public const string PluginName = "BeeswaxCoating";
-        public const string PluginVersion = "1.6.2";
+        public const string PluginName = "HoneySeal";
+        public const string PluginVersion = "2.0.0";
 
         internal new static ManualLogSource Logger;
         internal static ConfigEntry<bool> ShowHoverBadge;
@@ -35,11 +35,11 @@ namespace BeeswaxCoating
 
             ShowHoverBadge = Config.Bind(
                 "General", "ShowHoverBadge", true,
-                "Append a \"Beeswax coated\" line to hover text.");
+                "Append a \"Honey sealed\" line to hover text.");
 
             BrushUses = Config.Bind(
                 "General", "BrushUses", 20,
-                new ConfigDescription("Charges per crafted Beeswax Coating brush (shown as the durability bar). Applies to newly crafted brushes.",
+                new ConfigDescription("Charges per crafted Honey Seal brush (shown as the durability bar). Applies to newly crafted brushes.",
                     new AcceptableValueRange<int>(1, 100)));
 
             CoatedSheen = Config.Bind(
@@ -83,9 +83,11 @@ namespace BeeswaxCoating
 
                 // The coating: a multi-use hotbar item, applied by left-clicking
                 // while holding it. Crafted at the workbench from honey and resin.
+                // (Internal identifiers keep the historic beeswax naming so
+                // existing worlds, inventories and server installs stay valid.)
                 RegisterItem(
                     CoatingItem.PrefabName,
-                    "Beeswax Coating",
+                    "Honey Seal",
                     "A soft lump of treated wax on a handle. Hold it and left-click exposed wood to brush on the coating.",
                     new ItemConfig
                     {

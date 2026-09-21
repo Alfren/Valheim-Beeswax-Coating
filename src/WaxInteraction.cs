@@ -53,7 +53,7 @@ namespace BeeswaxCoating
                     Show(player, piece, outcome, PieceName(piece) + " does not weather in the rain");
                     break;
                 case WaxOutcome.AlreadyWaxed:
-                    Show(player, piece, outcome, PieceName(piece) + " is already waxed");
+                    Show(player, piece, outcome, PieceName(piece) + " is already sealed");
                     break;
                 case WaxOutcome.Applied:
                     Inventory inventory = player.GetInventory();
@@ -64,13 +64,13 @@ namespace BeeswaxCoating
                     {
                         player.UnequipItem(held);
                         inventory.RemoveOneItem(held);
-                        player.Message(MessageHud.MessageType.TopLeft, "Beeswax coating applied - brush worn out");
+                        player.Message(MessageHud.MessageType.TopLeft, "Honey seal applied - brush worn out");
                     }
                     else
                     {
                         MarkInventoryChanged(inventory);
                         player.Message(MessageHud.MessageType.TopLeft,
-                            "Beeswax coating applied (" + Mathf.CeilToInt(held.m_durability) + " uses left)");
+                            "Honey seal applied (" + Mathf.CeilToInt(held.m_durability) + " uses left)");
                     }
                     break;
             }
