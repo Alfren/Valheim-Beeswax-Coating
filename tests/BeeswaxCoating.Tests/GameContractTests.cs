@@ -217,6 +217,11 @@ namespace BeeswaxCoating.Tests
             Assert.True(shared?.GetField("m_maxDurability") != null, "SharedData.m_maxDurability missing");
             Assert.True(shared?.GetField("m_useDurability") != null, "SharedData.m_useDurability missing");
             Assert.True(shared?.GetField("m_equipDuration") != null, "SharedData.m_equipDuration missing");
+            // Tooltip-hiding zeroes on the brush depend on these SharedData fields
+            foreach (var f in new[] { "m_blockPower", "m_timedBlockBonus", "m_attackForce", "m_backstabBonus", "m_skillType" })
+            {
+                Assert.True(shared?.GetField(f) != null, $"SharedData.{f} missing");
+            }
 
             // Coating eligibility gates on the wood material family
             var materialType = GameType("WearNTear").GetNestedType("MaterialType");

@@ -19,7 +19,7 @@ namespace BeeswaxCoating
     {
         public const string PluginGuid = "benjamin.beeswaxcoating";
         public const string PluginName = "HoneySeal";
-        public const string PluginVersion = "2.0.0";
+        public const string PluginVersion = "2.0.1";
 
         internal new static ManualLogSource Logger;
         internal static ConfigEntry<bool> ShowHoverBadge;
@@ -142,6 +142,15 @@ namespace BeeswaxCoating
                 item.ItemDrop.m_itemData.m_durability = BrushUses.Value;
                 // Equip instantly like the hammer (SharedData default is 1s).
                 shared.m_equipDuration = 0f;
+                // The weapon item type is required for held-item detection, but a
+                // fresh SharedData carries combat defaults (block 10, parry 1.5x,
+                // backstab 4x, knockback 30, Swords skill) that the tooltip would
+                // display on a paint brush - zero them so those lines are hidden.
+                shared.m_skillType = Skills.SkillType.None;
+                shared.m_blockPower = 0f;
+                shared.m_timedBlockBonus = 0f;
+                shared.m_attackForce = 0f;
+                shared.m_backstabBonus = 0f;
             }
             else
             {

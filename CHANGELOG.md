@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.0.1
+- The brush tooltip no longer shows weapon stats (Block/Parry/Backstab/Knockback/Sword skill) - the weapon item type required for held-item detection inherited non-zero combat defaults from a fresh SharedData; they are now zeroed so the lines are hidden
+
 ## 2.0.0
 - Renamed the mod to HoneySeal (display-level: plugin GUID, item prefab names and config file keep the historic beeswax identifiers, so existing worlds, inventories and servers stay compatible)
 - Item renamed to "Honey Seal", hover badge to "Honey sealed", matching messages
